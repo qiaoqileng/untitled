@@ -13,12 +13,12 @@ public class MyGenerator {
 		// base model 所使用的包名
 		String baseModelPkg = "lifting.basemodel";
 		// base model 文件保存路径
-		String baseModelDir = "F:\\work\\web\\demo\\lifing\\src\\lifting\\basemodel";
+		String baseModelDir = "D:\\Users\\qql\\IdeaProjects\\untitled\\lifting\\src\\main\\java\\lifting\\basemodel";
 		 
 		// model 所使用的包名
 		String modelPkg = "lifting.model";
 		// model 文件保存路径
-		String modelDir = "F:\\work\\web\\demo\\lifing\\src\\lifting\\model";
+		String modelDir = "D:\\Users\\qql\\IdeaProjects\\untitled\\lifting\\src\\main\\java\\lifting\\model";
 		 
 		Generator gernerator = new Generator(getDataSource(), baseModelPkg, baseModelDir,modelPkg, modelDir);
 		gernerator.setDialect(new MysqlDialect()); 

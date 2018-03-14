@@ -12,89 +12,89 @@ public abstract class BaseProduct<M extends BaseProduct<M>> extends Model<M> imp
 	public void setId(java.math.BigInteger id) {
 		set("id", id);
 	}
-
+	
 	public java.math.BigInteger getId() {
 		return get("id");
 	}
 
-	public void setName(String name) {
+	public void setName(java.lang.String name) {
 		set("name", name);
 	}
-
-	public String getName() {
-		return get("name");
+	
+	public java.lang.String getName() {
+		return getStr("name");
 	}
 
-	public void setMainImg(String mainImg) {
+	public void setMainImg(java.lang.String mainImg) {
 		set("main_img", mainImg);
 	}
-
-	public String getMainImg() {
-		return get("main_img");
+	
+	public java.lang.String getMainImg() {
+		return getStr("main_img");
 	}
 
-	public void setDetailImg(String detailImg) {
+	public void setDetailImg(java.lang.String detailImg) {
 		set("detail_img", detailImg);
 	}
-
-	public String getDetailImg() {
-		return get("detail_img");
+	
+	public java.lang.String getDetailImg() {
+		return getStr("detail_img");
 	}
 
-	public void setContent(String content) {
+	public void setContent(java.lang.String content) {
 		set("content", content);
 	}
-
-	public String getContent() {
-		return get("content");
+	
+	public java.lang.String getContent() {
+		return getStr("content");
 	}
 
-	public void setTbUrl(String tbUrl) {
+	public void setTbUrl(java.lang.String tbUrl) {
 		set("tb_url", tbUrl);
 	}
-
-	public String getTbUrl() {
-		return get("tb_url");
+	
+	public java.lang.String getTbUrl() {
+		return getStr("tb_url");
 	}
 
-	public void setTbProductId(Long tbProductId) {
+	public void setTbProductId(java.lang.Long tbProductId) {
 		set("tb_product_id", tbProductId);
 	}
-
-	public Long getTbProductId() {
-		return get("tb_product_id");
+	
+	public java.lang.Long getTbProductId() {
+		return getLong("tb_product_id");
 	}
 
-	public void setTbShopId(Long tbShopId) {
+	public void setTbShopId(java.lang.Long tbShopId) {
 		set("tb_shop_id", tbShopId);
 	}
-
-	public Long getTbShopId() {
-		return get("tb_shop_id");
+	
+	public java.lang.Long getTbShopId() {
+		return getLong("tb_shop_id");
 	}
 
-	public void setTbkKey(String tbkKey) {
+	public void setTbkKey(java.lang.String tbkKey) {
 		set("tbk_key", tbkKey);
 	}
-
-	public String getTbkKey() {
-		return get("tbk_key");
+	
+	public java.lang.String getTbkKey() {
+		return getStr("tbk_key");
 	}
 
-	public void setPrice(Long price) {
+	public void setPrice(java.lang.Long price) {
 		set("price", price);
 	}
-
-	public Long getPrice() {
-		return get("price");
+	
+	public java.lang.Long getPrice() {
+		return getLong("price");
 	}
 
-	public void setBrandId(Long brandId) {
+	public void setBrandId(java.lang.Long brandId) {
 		set("brand_id", brandId);
 	}
-
-	public Long getBrandId() {
-		return get("brand_id");
+	
+	public java.lang.Long getBrandId() {
+		return getLong("brand_id");
 	}
 
 }

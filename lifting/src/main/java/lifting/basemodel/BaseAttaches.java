@@ -12,33 +12,33 @@ public abstract class BaseAttaches<M extends BaseAttaches<M>> extends Model<M> i
 	public void setId(java.math.BigInteger id) {
 		set("id", id);
 	}
-
+	
 	public java.math.BigInteger getId() {
 		return get("id");
 	}
 
-	public void setName(String name) {
+	public void setName(java.lang.String name) {
 		set("name", name);
 	}
-
-	public String getName() {
-		return get("name");
+	
+	public java.lang.String getName() {
+		return getStr("name");
 	}
 
-	public void setContent(String content) {
+	public void setContent(java.lang.String content) {
 		set("content", content);
 	}
-
-	public String getContent() {
-		return get("content");
+	
+	public java.lang.String getContent() {
+		return getStr("content");
 	}
 
-	public void setFiles(String files) {
+	public void setFiles(java.lang.String files) {
 		set("files", files);
 	}
-
-	public String getFiles() {
-		return get("files");
+	
+	public java.lang.String getFiles() {
+		return getStr("files");
 	}
 
 }

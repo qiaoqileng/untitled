@@ -1,5 +1,6 @@
 package lifting.utils;
 
+import java.io.File;
 import java.io.FileInputStream;  
 import java.io.FileNotFoundException;  
 import java.io.IOException;  
@@ -15,9 +16,13 @@ import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;  
 import org.apache.poi.ss.usermodel.Sheet;  
 import org.apache.poi.ss.usermodel.Workbook;  
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;  
 import org.slf4j.Logger;  
 import org.slf4j.LoggerFactory;  
+
+import com.jfinal.core.JFinal;
+import com.jfinal.kit.PathKit;
   
 /** 
  * 读取Excel 
@@ -30,18 +35,33 @@ public class ExcelUtils<T> {
     protected Sheet sheet;  
     protected Row row;  
     private T t;
+    private File file;
   
     public ExcelUtils(String filepath) {  
         if(filepath==null){  
             return;  
         }  
+        file = new File(filepath);
+        if (file == null || !file.exists() || file.isDirectory()) {
+			return;
+		}
+        
         String ext = filepath.substring(filepath.lastIndexOf("."));  
         try {  
-            InputStream is = new FileInputStream(filepath);  
             if(".xls".equals(ext)){  
-                wb = new HSSFWorkbook(is);  
+            	if (file.length() == 0) {
+        			wb = new HSSFWorkbook();
+        		} else {
+        			InputStream is = new FileInputStream(filepath);  
+        			wb = new HSSFWorkbook(is);  
+				}
             }else if(".xlsx".equals(ext)){  
-                wb = new XSSFWorkbook(is);  
+            	if (file.length() == 0) {
+        			wb = new SXSSFWorkbook(-1);
+        		} else {
+        			InputStream is = new FileInputStream(filepath);  
+        			wb = new XSSFWorkbook(is);  
+				}
             }else{  
                 wb=null;  
             }  
@@ -50,7 +70,18 @@ public class ExcelUtils<T> {
         } catch (IOException e) {  
             logger.error("IOException", e);  
         }  
-    }  
+    }
+    
+    public static String mkFilePath() throws Exception{
+    	String dirPath = JFinal.me().getConstants().getBaseDownloadPath();
+    	File tempFile = new File(dirPath);
+		if (!tempFile.exists()) {
+			tempFile.mkdir();
+		}
+		File file = new File(dirPath+"/"+System.currentTimeMillis()+".xlsx");
+		boolean success = file.createNewFile();
+		return success?file.getAbsolutePath():null;
+    }
       
     /** 
      * 读取Excel表格表头的内容 
@@ -216,5 +247,9 @@ public class ExcelUtils<T> {
         }catch (Exception e) {  
             e.printStackTrace();  
         }  
-    }  
+    }
+
+	public File getFile() {
+		return file;
+	}
 }  

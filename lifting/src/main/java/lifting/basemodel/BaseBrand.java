@@ -9,52 +9,52 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings("serial")
 public abstract class BaseBrand<M extends BaseBrand<M>> extends Model<M> implements IBean {
 
-	public void setId(Long id) {
+	public void setId(java.lang.Long id) {
 		set("id", id);
 	}
-
-	public Long getId() {
-		return get("id");
+	
+	public java.lang.Long getId() {
+		return getLong("id");
 	}
 
-	public void setName(String name) {
+	public void setName(java.lang.String name) {
 		set("name", name);
 	}
-
-	public String getName() {
-		return get("name");
+	
+	public java.lang.String getName() {
+		return getStr("name");
 	}
 
-	public void setLogo(String logo) {
+	public void setLogo(java.lang.String logo) {
 		set("logo", logo);
 	}
-
-	public String getLogo() {
-		return get("logo");
+	
+	public java.lang.String getLogo() {
+		return getStr("logo");
 	}
 
 	public void setCreateTime(java.util.Date createTime) {
 		set("create_time", createTime);
 	}
-
+	
 	public java.util.Date getCreateTime() {
 		return get("create_time");
 	}
 
-	public void setContent(String content) {
+	public void setContent(java.lang.String content) {
 		set("content", content);
 	}
-
-	public String getContent() {
-		return get("content");
+	
+	public java.lang.String getContent() {
+		return getStr("content");
 	}
 
-	public void setFrom(String from) {
+	public void setFrom(java.lang.String from) {
 		set("from", from);
 	}
-
-	public String getFrom() {
-		return get("from");
+	
+	public java.lang.String getFrom() {
+		return getStr("from");
 	}
 
 }

@@ -1,9 +1,15 @@
 package lifting.utils;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.math.BigInteger;
 import java.util.LinkedList;
+import java.util.List;
 
 import lifting.model.Attaches;
+
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
 
 public class AttachExcelUtil extends ExcelUtils<Attaches> {
 
@@ -49,6 +55,46 @@ public class AttachExcelUtil extends ExcelUtils<Attaches> {
             list.add(cellValue);
         }  
         return list;  
+	}
+	
+	public File exportExcel(List<Attaches> attaches) throws Exception{
+		if (Utils.emptyList(attaches)) {
+			return null;
+		} else {
+			FileOutputStream out = new FileOutputStream(getFile());
+			sheet = wb.createSheet();
+			for (int i = 0; i < attaches.size(); i++) {
+				row = sheet.createRow(i);
+				Attaches attach = attaches.get(i);
+				for (int j = 0; j < 4; j++) {
+					switch (j) {
+					case 0:
+						row.createCell(j, CellType.NUMERIC).setCellValue(attach.getId().doubleValue());
+						break;
+					case 1:
+						row.createCell(j, CellType.STRING).setCellValue(attach.getName());
+						break;
+					case 2:
+						row.createCell(j, CellType.STRING).setCellValue(attach.getContent());
+						break;
+					case 3:
+						row.createCell(j, CellType.STRING).setCellValue(attach.getFiles());
+						break;
+					}
+				}
+				if (i % 10000 == 0) {// 一万行向磁盘写一次
+	                //第六步：将内容写入磁盘  由于-1设置关闭自动刷新 需要人工主动刷新  调用：
+	                ((SXSSFSheet) sheet).flushRows(100); // retain 100 last rows and flush all others
+	                // Thread.sleep(1000);
+	                System.out.println("写入....");
+	                // ((SXSSFSheet)sh).flushRows() is a shortcut for ((SXSSFSheet)sh).flushRows(0),
+	                // this method flushes all rows
+	             }
+			}
+			wb.write(out);
+			out.close();
+			return getFile();
+		}
 	}
 
 }

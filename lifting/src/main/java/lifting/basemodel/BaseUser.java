@@ -12,73 +12,169 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 	public void setId(java.math.BigInteger id) {
 		set("id", id);
 	}
-
+	
 	public java.math.BigInteger getId() {
 		return get("id");
 	}
 
-	public void setName(String name) {
+	public void setName(java.lang.String name) {
 		set("name", name);
 	}
-
-	public String getName() {
-		return get("name");
+	
+	public java.lang.String getName() {
+		return getStr("name");
 	}
 
-	public void setMobileNum(String mobileNum) {
+	public void setMobileNum(java.lang.String mobileNum) {
 		set("mobile_num", mobileNum);
 	}
-
-	public String getMobileNum() {
-		return get("mobile_num");
+	
+	public java.lang.String getMobileNum() {
+		return getStr("mobile_num");
 	}
 
-	public void setLastLoginTime(String lastLoginTime) {
+	public void setLastLoginTime(java.lang.String lastLoginTime) {
 		set("last_login_time", lastLoginTime);
 	}
-
-	public String getLastLoginTime() {
-		return get("last_login_time");
+	
+	public java.lang.String getLastLoginTime() {
+		return getStr("last_login_time");
 	}
 
-	public void setMobileType(String mobileType) {
+	public void setMobileType(java.lang.String mobileType) {
 		set("mobile_type", mobileType);
 	}
-
-	public String getMobileType() {
-		return get("mobile_type");
+	
+	public java.lang.String getMobileType() {
+		return getStr("mobile_type");
 	}
 
-	public void setIsLocked(Integer isLocked) {
+	public void setIsLocked(java.lang.Integer isLocked) {
 		set("is_locked", isLocked);
 	}
-
-	public Integer getIsLocked() {
-		return get("is_locked");
+	
+	public java.lang.Integer getIsLocked() {
+		return getInt("is_locked");
 	}
 
-	public void setAge(Integer age) {
+	public void setAge(java.lang.Integer age) {
 		set("age", age);
 	}
-
-	public Integer getAge() {
-		return get("age");
+	
+	public java.lang.Integer getAge() {
+		return getInt("age");
 	}
 
-	public void setSex(Integer sex) {
+	public void setSex(java.lang.Integer sex) {
 		set("sex", sex);
 	}
-
-	public Integer getSex() {
-		return get("sex");
+	
+	public java.lang.Integer getSex() {
+		return getInt("sex");
 	}
 
-	public void setRemark(String remark) {
+	public void setRemark(java.lang.String remark) {
 		set("remark", remark);
 	}
+	
+	public java.lang.String getRemark() {
+		return getStr("remark");
+	}
 
-	public String getRemark() {
-		return get("remark");
+	public void setIsSaler(java.lang.Integer isSaler) {
+		set("is_saler", isSaler);
+	}
+	
+	public java.lang.Integer getIsSaler() {
+		return getInt("is_saler");
+	}
+
+	public void setShopUrl(java.lang.String shopUrl) {
+		set("shop_url", shopUrl);
+	}
+	
+	public java.lang.String getShopUrl() {
+		return getStr("shop_url");
+	}
+
+	public void setShopAddress(java.lang.String shopAddress) {
+		set("shop_address", shopAddress);
+	}
+	
+	public java.lang.String getShopAddress() {
+		return getStr("shop_address");
+	}
+
+	public void setShopBrand(java.lang.String shopBrand) {
+		set("shop_brand", shopBrand);
+	}
+	
+	public java.lang.String getShopBrand() {
+		return getStr("shop_brand");
+	}
+
+	public void setShopTaobaoUrl(java.lang.String shopTaobaoUrl) {
+		set("shop_taobao_url", shopTaobaoUrl);
+	}
+	
+	public java.lang.String getShopTaobaoUrl() {
+		return getStr("shop_taobao_url");
+	}
+
+	public void setShopCreateTime(java.lang.String shopCreateTime) {
+		set("shop_create_time", shopCreateTime);
+	}
+	
+	public java.lang.String getShopCreateTime() {
+		return getStr("shop_create_time");
+	}
+
+	public void setShopType(java.lang.String shopType) {
+		set("shop_type", shopType);
+	}
+	
+	public java.lang.String getShopType() {
+		return getStr("shop_type");
+	}
+
+	public void setShopStyle(java.lang.String shopStyle) {
+		set("shop_style", shopStyle);
+	}
+	
+	public java.lang.String getShopStyle() {
+		return getStr("shop_style");
+	}
+
+	public void setQq(java.lang.String qq) {
+		set("qq", qq);
+	}
+	
+	public java.lang.String getQq() {
+		return getStr("qq");
+	}
+
+	public void setEmail(java.lang.String email) {
+		set("email", email);
+	}
+	
+	public java.lang.String getEmail() {
+		return getStr("email");
+	}
+
+	public void setOpenId(java.lang.String openId) {
+		set("open_id", openId);
+	}
+	
+	public java.lang.String getOpenId() {
+		return getStr("open_id");
+	}
+
+	public void setThirdName(java.lang.String thirdName) {
+		set("third_name", thirdName);
+	}
+	
+	public java.lang.String getThirdName() {
+		return getStr("third_name");
 	}
 
 }

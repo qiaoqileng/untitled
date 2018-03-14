@@ -1,13 +1,11 @@
 package lifting.control;
 
 import java.io.File;
-import java.nio.charset.Charset;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import lifting.model.Attaches;
 import lifting.utils.AttachExcelUtil;
@@ -18,7 +16,6 @@ import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.IAtom;
 import com.jfinal.upload.UploadFile;
-import com.mysql.jdbc.StringUtils;
 
 public class AttachController extends Controller{
 	
@@ -39,28 +36,19 @@ public class AttachController extends Controller{
 				if (localFile != null && localFile.exists() && !localFile.isDirectory()) {
 					ExcelUtils rUtils = new AttachExcelUtil(localFile.getAbsolutePath());
 //						Attaches.dao.put(map)
-					LinkedList<Attaches> list= rUtils.readExcelContentForT();
+					final LinkedList<Attaches> list= rUtils.readExcelContentForT();
 					if (!Utils.emptyList(list)) {
-						for(Attaches attaches:list){
-							suffix.append("(" + attaches.getId() + ", " + attaches.getName() + ", " + attaches.getContent() + ", " + attaches.getFiles() + "),");
-						}
+						Db.tx(new IAtom() {
+							
+							@Override
+							public boolean run() throws SQLException {
+								int[] arrays = Db.batchSave(list, list.size());
+								System.out.println(Arrays.toString(arrays));
+								return true;
+							}
+						});
 					}
 				}
-			}
-            if (!StringUtils.isNullOrEmpty(suffix.toString())) {
-            	sql = sql + suffix.substring(0, suffix.length() - 1);
-            	System.out.println(Charset.defaultCharset().name());
-            	final String finalSql = new String(sql.getBytes(),"GBK");
-            	System.out.println(finalSql);
-                boolean success = Db.tx(new IAtom() {
-    				
-    				@Override
-    				public boolean run() throws SQLException {
-    					int count = Db.update(finalSql);
-    					return count == 1;
-    				}
-    			});
-                System.out.println(success);
 			}
 	        // 结束时间  
 	        Long end = new Date().getTime();  
@@ -70,5 +58,24 @@ public class AttachController extends Controller{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void download() {
+		String sql = Attaches.dao.getSql("attach.download");
+		List<Attaches> aList = Attaches.dao.find(sql);
+		AttachExcelUtil rUtils;
+		try {
+			rUtils = new AttachExcelUtil(ExcelUtils.mkFilePath());
+			File file = rUtils.exportExcel(aList);
+			if (file == null || !file.exists()) {
+				renderText("failed");
+			} else {
+				renderFile(file);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			renderNull();
+		}
+		
 	}
 }
