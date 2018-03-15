@@ -14,6 +14,7 @@ import com.taobao.api.request.TimeGetRequest;
 import com.taobao.api.response.TbkItemGetResponse;
 import com.taobao.api.response.TimeGetResponse;
 import lifting.bean.StringResult;
+import lifting.bean.UserResult;
 import lifting.model.User;
 
 import com.jfinal.core.Controller;
@@ -82,7 +83,7 @@ public class UserController extends Controller{
 			if (result){
 				//  2018/3/14 设置session
 				createToken();
-				renderJson(new StringResult(false,"success","登陆成功"));
+				renderJson(new UserResult(false,user,"登陆成功"));
 			} else {
 				renderJson(new StringResult(true,"failed","登陆异常"));
 			}
