@@ -177,4 +177,12 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		return getStr("third_name");
 	}
 
+	public void setHeadUrl(java.lang.String headUrl) {
+		set("head_url", headUrl);
+	}
+	
+	public java.lang.String getHeadUrl() {
+		return getStr("head_url");
+	}
+
 }

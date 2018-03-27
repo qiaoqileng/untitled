@@ -9,8 +9,10 @@ import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
 import com.taobao.api.internal.util.StringUtils;
+import com.taobao.api.request.OpenSmsSendvercodeRequest;
 import com.taobao.api.request.TbkItemGetRequest;
 import com.taobao.api.request.TimeGetRequest;
+import com.taobao.api.response.OpenSmsSendvercodeResponse;
 import com.taobao.api.response.TbkItemGetResponse;
 import com.taobao.api.response.TimeGetResponse;
 import lifting.bean.StringResult;
@@ -73,11 +75,15 @@ public class UserController extends Controller{
 		} else {
 			String sql = User.dao.getSql("user.find_by_open_id");
 			List<User> users = User.dao.find(sql, openId);
-			user.setLastLoginTime(Utils.getCurrTime());
 			boolean result = false;
 			if (!Utils.emptyList(users)){
-				result = user.update();
+				User remoteUser = users.get(0);
+				remoteUser.setName(user.getName());
+				remoteUser.setThirdName(user.getThirdName());
+				remoteUser.setLastLoginTime(Utils.getCurrTime());
+				result = remoteUser.update();
 			} else {
+				user.setLastLoginTime(Utils.getCurrTime());
 				result = user.save();
 			}
 			if (result){
@@ -88,6 +94,34 @@ public class UserController extends Controller{
 				renderJson(new StringResult(true,"failed","登陆异常"));
 			}
 		}
+	}
+
+	public void sendSMS(){
+		TaobaoClient client = new DefaultTaobaoClient("http://gw.api.taobao.com/router/rest", "23577685", "79f17f8f67dc1fc3b5d01294edab5066");
+		OpenSmsSendvercodeRequest req = new OpenSmsSendvercodeRequest();
+		OpenSmsSendvercodeRequest.SendVerCodeRequest obj1 = new OpenSmsSendvercodeRequest.SendVerCodeRequest();
+		obj1.setExpireTime(123L);
+		obj1.setSessionLimit(123L);
+		obj1.setDeviceLimit(123L);
+		obj1.setDeviceLimitInTime(123L);
+		obj1.setMobileLimit(123L);
+		obj1.setSessionLimitInTime(123L);
+		obj1.setExternalId("12345");
+		obj1.setMobileLimitInTime(123L);
+		obj1.setTemplateId(123L);
+		obj1.setSignatureId(123L);
+		obj1.setMobile("15068809019");
+		obj1.setVerCodeLength(4L);
+		obj1.setSignature("淘宝网");
+		req.setSendVerCodeRequest(obj1);
+		OpenSmsSendvercodeResponse rsp = null;
+		try {
+			rsp = client.execute(req);
+		} catch (ApiException e) {
+			e.printStackTrace();
+		}
+		renderJson(rsp.getBody());
+//		System.out.println(rsp.getBody());
 	}
 
 	public void edit() {

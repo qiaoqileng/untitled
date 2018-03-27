@@ -97,4 +97,36 @@ public abstract class BaseProduct<M extends BaseProduct<M>> extends Model<M> imp
 		return getLong("brand_id");
 	}
 
+	public void setTag(java.lang.String tag) {
+		set("tag", tag);
+	}
+	
+	public java.lang.String getTag() {
+		return getStr("tag");
+	}
+
+	public void setCreateTime(java.lang.String createTime) {
+		set("create_time", createTime);
+	}
+	
+	public java.lang.String getCreateTime() {
+		return getStr("create_time");
+	}
+
+	public void setUpdateTime(java.lang.String updateTime) {
+		set("update_time", updateTime);
+	}
+	
+	public java.lang.String getUpdateTime() {
+		return getStr("update_time");
+	}
+
+	public void setIsOpen(java.lang.Integer isOpen) {
+		set("is_open", isOpen);
+	}
+	
+	public java.lang.Integer getIsOpen() {
+		return getInt("is_open");
+	}
+
 }
