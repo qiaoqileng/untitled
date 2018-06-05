@@ -4,3 +4,6 @@
 #namespace("user")
     #include("user.sql");
 #end
+#namespace("product")
+  #include("product.sql");
+#end

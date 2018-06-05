@@ -1,8 +1,12 @@
 package lifting.config;
 
+import com.jfinal.json.FastJsonFactory;
+import com.jfinal.json.JacksonFactory;
 import lifting.control.AttachController;
 import lifting.control.HelloController;
+import lifting.control.ProductController;
 import lifting.control.UserController;
+import lifting.json.MyJsonFactory;
 import lifting.model._MappingKit;
 
 import com.jfinal.config.Constants;
@@ -26,6 +30,7 @@ public class Config extends JFinalConfig{
 	public void configConstant(Constants me) {
 		me.setDevMode(true);
 		me.setViewType(ViewType.JSP);
+//		me.setJsonFactory(new MyJsonFactory());
 		PropKit.use("config.properties");
 	}
 
@@ -34,6 +39,7 @@ public class Config extends JFinalConfig{
 		me.add("/hello", HelloController.class);
 		me.add("/user",UserController.class);
 		me.add("/attach",AttachController.class);
+		me.add("/product", ProductController.class);
 	}
 
 	@Override

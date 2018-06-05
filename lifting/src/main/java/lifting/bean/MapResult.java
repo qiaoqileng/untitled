@@ -1,7 +1,8 @@
 package lifting.bean;
 
-import com.jfinal.template.expr.ast.Map;
 import lifting.bean.base.CommonResult;
+
+import java.util.Map;
 
 public class MapResult extends CommonResult<Map>{
 
